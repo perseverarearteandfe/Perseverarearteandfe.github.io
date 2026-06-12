@@ -1,0 +1,1141 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perseverare Arte + Fe</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #2d2d2d;
+    --paper: #f8f5f0;
+    --red: #c0392b;
+    --gold: #c9a84c;
+    --aqua: #4a9d9c;
+    --mist: #e8e4de;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    background: rgba(248,245,240,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: var(--aqua);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span {
+    color: var(--red);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--aqua); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 70px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--aqua);
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--aqua);
+    margin-bottom: 28px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #555;
+    max-width: 420px;
+    margin-bottom: 44px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--aqua);
+    color: white;
+    padding: 14px 32px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--ink);
+  }
+
+  .btn-secondary {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 14px 32px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: white;
+  }
+
+  .hero-art {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    overflow: hidden;
+  }
+
+  .hero-art-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+  }
+
+  /* Ink wash art simulation */
+  .ink-canvas {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 4/3;
+    position: relative;
+    background: #f0ede8;
+  }
+
+  .ink-canvas svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .red-dot {
+    position: absolute;
+    bottom: 28%;
+    left: 22%;
+    width: 18px;
+    height: 28px;
+    background: var(--red);
+    border-radius: 50% 50% 40% 40%;
+  }
+
+  .hero-verse {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    right: 40px;
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 80px;
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 100px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .about-text h2 span {
+    color: var(--aqua);
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 16px;
+  }
+
+  .about-quote {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 48px;
+    position: relative;
+  }
+
+  .about-quote::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: var(--gold);
+    opacity: 0.3;
+    position: absolute;
+    top: 10px;
+    left: 24px;
+    line-height: 1;
+  }
+
+  .about-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-quote cite {
+    display: block;
+    margin-top: 16px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* GALLERY */
+  .gallery {
+    padding: 100px 80px;
+    background: var(--ink);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-eyebrow {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--aqua);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--paper);
+    line-height: 1.2;
+  }
+
+  .section-title.dark {
+    color: var(--ink);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .gallery-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    cursor: pointer;
+    background: #111;
+  }
+
+  .gallery-item-art {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #111 100%);
+    transition: transform 0.5s ease;
+    position: relative;
+  }
+
+  .gallery-item:hover .gallery-item-art {
+    transform: scale(1.04);
+  }
+
+  .gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gallery-item:hover .gallery-item-overlay {
+    opacity: 1;
+  }
+
+  .gallery-item-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .gallery-item-meta {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+
+  /* Art illustrations using CSS + SVG */
+  .art-tree {
+    width: 85%;
+    height: 85%;
+  }
+
+  /* PRODUCTS */
+  .products {
+    padding: 100px 80px;
+    background: var(--paper);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+  }
+
+  .product-card {
+    border: 1px solid var(--mist);
+    background: white;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  }
+
+  .product-card-art {
+    height: 200px;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--red);
+    color: white;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+  }
+
+  .product-body {
+    padding: 28px;
+  }
+
+  .product-category {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--aqua);
+    margin-bottom: 8px;
+  }
+
+  .product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .product-desc {
+    font-size: 0.85rem;
+    color: #777;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .product-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  .product-price span {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: #999;
+    margin-left: 4px;
+  }
+
+  .btn-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #25d366;
+    color: white;
+    padding: 12px 20px;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: background 0.3s;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-whatsapp:hover { background: #1ebe5d; }
+
+  /* DEVOTIONAL SAMPLE */
+  .devotional {
+    padding: 100px 80px;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .devotional::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,157,156,0.06) 0%, transparent 70%);
+  }
+
+  .devotional-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .devotional-inner .section-eyebrow {
+    margin-bottom: 16px;
+  }
+
+  .devotional-inner .section-title {
+    margin-bottom: 40px;
+  }
+
+  .verse-card {
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 48px;
+    position: relative;
+    margin-bottom: 32px;
+  }
+
+  .verse-card::before, .verse-card::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.5;
+  }
+
+  .verse-card::before {
+    top: -1px; left: -1px;
+    border-width: 1px 0 0 1px;
+  }
+
+  .verse-card::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 1px 1px 0;
+  }
+
+  .verse-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--paper);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .verse-ref {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+  }
+
+  .devotional-body {
+    color: rgba(248,245,240,0.7);
+    font-size: 0.95rem;
+    line-height: 1.9;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+
+  /* ARTIST */
+  .artist {
+    padding: 100px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background: var(--mist);
+  }
+
+  .artist-works {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .artist-work-thumb {
+    aspect-ratio: 4/3;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .artist-work-thumb:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16/7;
+  }
+
+  .artist-info .section-eyebrow {
+    color: var(--aqua);
+    margin-bottom: 12px;
+  }
+
+  .artist-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .artist-info h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .artist-info p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 16px;
+  }
+
+  .technique-tag {
+    display: inline-block;
+    border: 1px solid var(--ink);
+    padding: 6px 14px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-right: 8px;
+    margin-top: 8px;
+  }
+
+  /* CONTACT / FOOTER */
+  footer {
+    background: #111;
+    padding: 80px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.4rem;
+    color: var(--aqua);
+    margin-bottom: 4px;
+  }
+
+  .footer-logo span { color: var(--red); }
+
+  .footer-tagline {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 40px;
+  }
+
+  .footer-cross {
+    display: inline-block;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin: 0 8px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--aqua); }
+
+  .footer-contact {
+    margin-bottom: 40px;
+  }
+
+  .footer-contact p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+  }
+
+  .whatsapp-footer {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(37,211,102,0.15);
+    border: 1px solid rgba(37,211,102,0.3);
+    color: #25d366;
+    padding: 14px 32px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .whatsapp-footer:hover {
+    background: #25d366;
+    color: white;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 32px;
+    margin-top: 48px;
+    color: rgba(255,255,255,0.2);
+    font-size: 0.75rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-text { padding: 60px 32px 40px; }
+    .hero-art { min-height: 300px; }
+
+    .about, .artist { grid-template-columns: 1fr; padding: 60px 32px; gap: 40px; }
+    .gallery { padding: 60px 32px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .products { padding: 60px 32px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .devotional { padding: 60px 32px; }
+    .verse-card { padding: 32px 24px; }
+    footer { padding: 60px 32px; }
+    .divider { margin: 0 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Perseverare <span>+</span> Fe</div>
+  <ul class="nav-links">
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#productos">Tienda</a></li>
+    <li><a href="#devocional">Devocional</a></li>
+    <li><a href="#artista">La Artista</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Arte · Devoción · Fe</p>
+    <h1 class="hero-title">Arte que<br><em>ministra</em><br>el alma</h1>
+    <p class="hero-subtitle">Perseverare Arte + Fe</p>
+    <p class="hero-desc">Tinta china sobre papel. Palabras que permanecen. Una figura en rojo en medio del gris — recordándonos que no estamos solos, que no nos quebramos, que florecemos incluso en la sombra.</p>
+    <div class="hero-ctas">
+      <a href="#galeria" class="btn-primary">Ver la Galería</a>
+      <a href="#productos" class="btn-secondary">Tienda</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <div class="hero-art-inner">
+      <div class="ink-canvas">
+        <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg">
+          <!-- Paper texture background -->
+          <rect width="480" height="360" fill="#f0ede8"/>
+          
+          <!-- Ink wash - tree mass -->
+          <ellipse cx="320" cy="80" rx="110" ry="85" fill="#1a1a1a" opacity="0.85"/>
+          <ellipse cx="295" cy="100" rx="80" ry="65" fill="#111" opacity="0.7"/>
+          <ellipse cx="340" cy="70" rx="70" ry="55" fill="#2a2a2a" opacity="0.6"/>
+          
+          <!-- Tree trunk / branch -->
+          <path d="M290 150 Q270 200 240 260 Q225 290 215 320" stroke="#1a1a1a" stroke-width="6" fill="none" opacity="0.9"/>
+          <path d="M290 150 Q305 180 310 210" stroke="#1a1a1a" stroke-width="3" fill="none" opacity="0.5"/>
+          
+          <!-- Ink wash ground / water reflection -->
+          <rect x="0" y="290" width="480" height="4" fill="#1a1a1a" opacity="0.15"/>
+          <rect x="0" y="298" width="480" height="2" fill="#1a1a1a" opacity="0.08"/>
+          <rect x="0" y="305" width="480" height="1.5" fill="#1a1a1a" opacity="0.06"/>
+          <rect x="0" y="315" width="480" height="1" fill="#1a1a1a" opacity="0.04"/>
+          
+          <!-- Ink splatters -->
+          <circle cx="160" cy="120" r="3" fill="#1a1a1a" opacity="0.2"/>
+          <circle cx="175" cy="95" r="2" fill="#1a1a1a" opacity="0.15"/>
+          <circle cx="140" cy="140" r="4" fill="#1a1a1a" opacity="0.12"/>
+          <circle cx="410" cy="110" r="3" fill="#1a1a1a" opacity="0.18"/>
+          <circle cx="420" cy="130" r="2" fill="#1a1a1a" opacity="0.1"/>
+          
+          <!-- Boat -->
+          <ellipse cx="150" cy="300" rx="35" ry="8" fill="#2a2a2a" opacity="0.9"/>
+          <path d="M115 300 Q150 285 185 300" fill="#1a1a1a" opacity="0.8"/>
+          
+          <!-- Figure in red -->
+          <ellipse cx="150" cy="286" rx="7" ry="10" fill="#c0392b"/>
+          <circle cx="150" cy="275" r="5" fill="#1a1a1a"/>
+          
+          <!-- Falling petals -->
+          <ellipse cx="200" cy="160" rx="4" ry="7" fill="#c0392b" opacity="0.7" transform="rotate(-20 200 160)"/>
+          <ellipse cx="230" cy="130" rx="3" ry="6" fill="#c0392b" opacity="0.5" transform="rotate(15 230 130)"/>
+          <ellipse cx="180" cy="190" rx="3" ry="5" fill="#c0392b" opacity="0.4" transform="rotate(-35 180 190)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-verse">
+      "Dios es nuestro amparo y fortaleza,<br>nuestra segura ayuda en momentos de angustia."<br>— Salmo 46:1
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-text">
+    <h2>Ocho años<br>sembrando <span>fe</span><br>con arte</h2>
+    <p>Perseverare Arte + Fe nació de la convicción de que la fe necesita lenguajes. No solo palabras — también imágenes, silencio, belleza.</p>
+    <p>Cada devocional diario combina la Palabra de Dios con el arte único de Sandy Bird: tinta china sobre papel, una figura en rojo que persevera en medio del gris.</p>
+    <p>Más de 5,800 personas en nuestra comunidad de Facebook. Ocho años de presencia diaria. Una familia que crece.</p>
+  </div>
+  <div class="about-quote">
+    <p>En la quietud donde el ruido se apaga, donde el mundo parece olvidarse de ti, allí... justo allí, comienza el misterio de florecer.</p>
+    <cite>— Florece en la Sombra · Sandy Bird, 2026</cite>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GALLERY -->
+<section class="gallery" id="galeria">
+  <div class="section-header">
+    <p class="section-eyebrow">Obras Originales</p>
+    <h2 class="section-title">La colección<br>Sandy Bird</h2>
+  </div>
+
+  <div class="gallery-grid">
+    <!-- Obra 1: No me quiebro -->
+    <div class="gallery-item">
+      <div class="gallery-item-art">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="400" height="300" fill="#1a1a1a"/>
+          <ellipse cx="160" cy="80" rx="90" ry="70" fill="#2d2d2d" opacity="0.9"/>
+          <ellipse cx="140" cy="95" rx="65" ry="55" fill="#111" opacity="0.8"/>
+          <path d="M155 140 Q150 180 148 240" stroke="#3a3a3a" stroke-width="5" fill="none"/>
+          <rect x="0" y="240" width="400" height="60" fill="#111"/>
+          <rect x="0" y="238" width="400" height="3" fill="#3a3a3a" opacity="0.5"/>
+          <circle cx="230" cy="130" r="3" fill="#2d2d2d" opacity="0.5"/>
+          <circle cx="245" cy="110" r="2" fill="#2d2d2d" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-title">No me quiebro</div>
+        <div class="gallery-item-meta">Sandy Bird · Tinta china sobre papel · 2026</div>
+      </div>
+    </div>
+
+    <!-- Obra 2: Florece en la sombra -->
+    <div class="gallery-item">
+      <div class="gallery-item-art">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="400" height="300" fill="#1a1a1a"/>
+          <ellipse cx="260" cy="70" rx="100" ry="80" fill="#2d2d2d" opacity="0.85"/>
+          <path d="M240 130 Q210 180 195 240" stroke="#3a3a3a" stroke-width="4" fill="none"/>
+          <ellipse cx="110" cy="210" rx="30" ry="8" fill="#222" opacity="0.9"/>
+          <path d="M80 210 Q110 198 140 210" fill="#111"/>
+          <ellipse cx="110" cy="199" rx="6" ry="9" fill="#c0392b"/>
+          <circle cx="110" cy="189" r="4.5" fill="#1a1a1a"/>
+          <ellipse cx="310" cy="80" rx="15" ry="8" fill="#1a1a1a" opacity="0.4" transform="rotate(20 310 80)"/>
+        </svg>
+      </div>
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-title">Florece en la Sombra</div>
+        <div class="gallery-item-meta">Sandy Bird · Tinta china sobre papel · 2026</div>
+      </div>
+    </div>
+
+    <!-- Obra 3: Saltó el obstáculo -->
+    <div class="gallery-item">
+      <div class="gallery-item-art">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="400" height="300" fill="#1a1a1a"/>
+          <!-- Misty water -->
+          <rect x="0" y="180" width="400" height="120" fill="#111"/>
+          <rect x="0" y="178" width="400" height="4" fill="#2d2d2d" opacity="0.5"/>
+          <!-- Trees silhouette left -->
+          <ellipse cx="60" cy="150" rx="45" ry="55" fill="#1a1a1a" opacity="0.9"/>
+          <!-- Boat -->
+          <ellipse cx="150" cy="185" rx="30" ry="7" fill="#222"/>
+          <path d="M120 185 Q150 173 180 185" fill="#111"/>
+          <!-- Figure red -->
+          <ellipse cx="148" cy="175" rx="5" ry="8" fill="#c0392b"/>
+          <circle cx="148" cy="166" r="4" fill="#1a1a1a"/>
+          <!-- Fishing line arc -->
+          <path d="M155 172 Q280 80 340 150" stroke="#3a3a3a" stroke-width="1.5" fill="none" opacity="0.7"/>
+          <!-- Tower right -->
+          <rect x="335" y="120" width="8" height="80" fill="#2d2d2d" opacity="0.8"/>
+          <!-- Mist -->
+          <ellipse cx="200" cy="180" rx="200" ry="20" fill="#1a1a1a" opacity="0.15"/>
+        </svg>
+      </div>
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-title">Saltó el Obstáculo</div>
+        <div class="gallery-item-meta">Sandy Bird · Serie: El hilo en el río · 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="productos">
+  <div class="section-header">
+    <p class="section-eyebrow">Tienda</p>
+    <h2 class="section-title dark">Lleva el arte<br>a tu vida</h2>
+  </div>
+
+  <div class="products-grid">
+
+    <!-- Producto 1 -->
+    <div class="product-card">
+      <div class="product-card-art" style="background:#1a1a1a;">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="300" height="200" fill="#1a1a1a"/>
+          <ellipse cx="180" cy="50" rx="80" ry="60" fill="#2d2d2d" opacity="0.8"/>
+          <path d="M170 100 Q165 140 160 180" stroke="#3a3a3a" stroke-width="4" fill="none"/>
+          <ellipse cx="70" cy="155" rx="25" ry="6" fill="#222"/>
+          <path d="M45 155 Q70 145 95 155" fill="#111"/>
+          <ellipse cx="70" cy="147" rx="5" ry="7" fill="#c0392b"/>
+          <circle cx="70" cy="139" r="4" fill="#1a1a1a"/>
+        </svg>
+        <div class="product-badge">Digital</div>
+      </div>
+      <div class="product-body">
+        <p class="product-category">Arte Devocional</p>
+        <h3 class="product-title">Pack: Árboles que no se quiebran</h3>
+        <p class="product-desc">12 imágenes de alta resolución de la serie "No me quiebro" de Sandy Bird, con versículos bíblicos y reflexiones para descargar e imprimir.</p>
+        <p class="product-price">Q75 <span>descarga digital</span></p>
+        <a href="https://wa.me/50200000000?text=Hola,%20quiero%20el%20Pack%20Árboles%20que%20no%20se%20quiebran" class="btn-whatsapp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedir por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Producto 2 -->
+    <div class="product-card">
+      <div class="product-card-art" style="background:#111;">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="300" height="200" fill="#111"/>
+          <!-- Book/PDF representation -->
+          <rect x="80" y="40" width="140" height="120" rx="4" fill="#1a1a1a" stroke="#c9a84c" stroke-width="1" opacity="0.8"/>
+          <rect x="88" y="48" width="124" height="104" rx="2" fill="#f0ede8" opacity="0.06"/>
+          <!-- Cross on cover -->
+          <rect x="143" y="65" width="14" height="50" fill="#c9a84c" opacity="0.6"/>
+          <rect x="130" y="78" width="40" height="14" fill="#c9a84c" opacity="0.6"/>
+          <!-- Lines suggesting text -->
+          <rect x="96" y="125" width="80" height="2" fill="#c9a84c" opacity="0.2"/>
+          <rect x="96" y="131" width="60" height="2" fill="#c9a84c" opacity="0.15"/>
+          <rect x="96" y="137" width="70" height="2" fill="#c9a84c" opacity="0.12"/>
+        </svg>
+        <div class="product-badge">PDF</div>
+      </div>
+      <div class="product-body">
+        <p class="product-category">Devocional</p>
+        <h3 class="product-title">Devocional 30 Días con Sandy Bird</h3>
+        <p class="product-desc">30 reflexiones diarias combinando la tinta de Sandy Bird con la Palabra de Dios. Para leer en familia, en pareja o en soledad con Él.</p>
+        <p class="product-price">Q50 <span>descarga PDF</span></p>
+        <a href="https://wa.me/50200000000?text=Hola,%20quiero%20el%20Devocional%2030%20días" class="btn-whatsapp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedir por WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Producto 3 -->
+    <div class="product-card">
+      <div class="product-card-art" style="background:#1a1a1a;">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+          <rect width="300" height="200" fill="#1a1a1a"/>
+          <!-- Sound waves representing audio -->
+          <line x1="150" y1="60" x2="150" y2="140" stroke="#4a9d9c" stroke-width="3" opacity="0.7"/>
+          <line x1="130" y1="75" x2="130" y2="125" stroke="#4a9d9c" stroke-width="2.5" opacity="0.6"/>
+          <line x1="170" y1="75" x2="170" y2="125" stroke="#4a9d9c" stroke-width="2.5" opacity="0.6"/>
+          <line x1="110" y1="88" x2="110" y2="112" stroke="#4a9d9c" stroke-width="2" opacity="0.5"/>
+          <line x1="190" y1="88" x2="190" y2="112" stroke="#4a9d9c" stroke-width="2" opacity="0.5"/>
+          <line x1="90" y1="95" x2="90" y2="105" stroke="#4a9d9c" stroke-width="1.5" opacity="0.3"/>
+          <line x1="210" y1="95" x2="210" y2="105" stroke="#4a9d9c" stroke-width="1.5" opacity="0.3"/>
+          <!-- Microphone hint -->
+          <circle cx="150" cy="100" r="18" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.3"/>
+        </svg>
+        <div class="product-badge">Audio</div>
+      </div>
+      <div class="product-body">
+        <p class="product-category">Narración</p>
+        <h3 class="product-title">Devocional en Audio — Voz Jaime Archila</h3>
+        <p class="product-desc">Reflexiones narradas con voz profesional de radiodifusión. Para escuchar en tu devocional matutino, en el auto o donde Dios te encuentre.</p>
+        <p class="product-price">Q35 <span>por episodio · packs disponibles</span></p>
+        <a href="https://wa.me/50200000000?text=Hola,%20quiero%20info%20sobre%20el%20devocional%20en%20audio" class="btn-whatsapp">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pedir por WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DEVOTIONAL SAMPLE -->
+<section class="devotional" id="devocional">
+  <div class="devotional-inner">
+    <p class="section-eyebrow">Devocional Diario</p>
+    <h2 class="section-title">Una palabra<br>para hoy</h2>
+
+    <div class="verse-card">
+      <p class="verse-text">"El que confía en el Señor es como el árbol plantado junto al agua, que extiende sus raíces hacia la corriente."</p>
+      <p class="verse-ref">— Jeremías 17:7-8</p>
+    </div>
+
+    <p class="devotional-body">
+      Hay árboles que el viento dobla pero no rompe. Su secreto no está en su rigidez — está en sus raíces. Raíces que van más profundo que la tormenta, más abajo que el miedo, hasta encontrar agua viva que no se agota.<br><br>
+      ¿Dónde están tus raíces hoy? ¿En lo que ves, en lo que tienes, en lo que otros dicen de ti? O en Aquel que sostiene todo — incluso cuando el viento arrecia y el suelo tiembla.
+    </p>
+
+    <a href="https://www.facebook.com/perseverarearteandfe" class="btn-secondary" style="display:inline-block; border-color: var(--aqua); color: var(--aqua);">
+      Ver más en Facebook
+    </a>
+  </div>
+</section>
+
+<!-- ARTIST -->
+<section class="artist" id="artista">
+  <div class="artist-works">
+    <div class="artist-work-thumb">
+      <svg viewBox="0 0 600 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="600" height="225" fill="#1a1a1a"/>
+        <ellipse cx="350" cy="60" rx="140" ry="100" fill="#2d2d2d" opacity="0.8"/>
+        <path d="M330 140 Q310 170 295 220" stroke="#3a3a3a" stroke-width="5" fill="none"/>
+        <rect x="0" y="200" width="600" height="25" fill="#111"/>
+        <ellipse cx="120" cy="185" rx="35" ry="8" fill="#222"/>
+        <path d="M85 185 Q120 173 155 185" fill="#111"/>
+        <ellipse cx="118" cy="175" rx="6" ry="9" fill="#c0392b"/>
+        <circle cx="118" cy="165" r="5" fill="#1a1a1a"/>
+        <!-- Fishing line -->
+        <path d="M125 172 Q380 60 480 130" stroke="#3a3a3a" stroke-width="1.5" fill="none" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="artist-work-thumb">
+      <svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="300" height="225" fill="#111"/>
+        <ellipse cx="160" cy="55" rx="100" ry="75" fill="#1a1a1a" opacity="0.9"/>
+        <ellipse cx="145" cy="70" rx="70" ry="55" fill="#0a0a0a" opacity="0.8"/>
+        <path d="M152 120 Q148 160 145 225" stroke="#2a2a2a" stroke-width="4" fill="none"/>
+        <rect x="0" y="200" width="300" height="25" fill="#0a0a0a"/>
+      </svg>
+    </div>
+    <div class="artist-work-thumb">
+      <svg viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <rect width="300" height="225" fill="#1a1a1a"/>
+        <ellipse cx="190" cy="65" rx="85" ry="70" fill="#2d2d2d" opacity="0.85"/>
+        <path d="M178 125 Q165 160 155 225" stroke="#3a3a3a" stroke-width="4" fill="none"/>
+        <ellipse cx="80" cy="188" rx="28" ry="7" fill="#222"/>
+        <ellipse cx="79" cy="179" rx="5" ry="8" fill="#c0392b"/>
+        <circle cx="79" cy="170" r="4" fill="#1a1a1a"/>
+        <ellipse cx="230" cy="75" rx="12" ry="6" fill="#1a1a1a" opacity="0.3" transform="rotate(25 230 75)"/>
+        <ellipse cx="210" cy="55" rx="8" ry="4" fill="#1a1a1a" opacity="0.2" transform="rotate(-15 210 55)"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="artist-info">
+    <p class="section-eyebrow">La Artista</p>
+    <h2>Sandy Bird</h2>
+    <h3>Tinta sobre papel · Fe sobre lienzo</h3>
+    <p>Artista guatemalteca cuyo lenguaje es la tinta china sobre papel. Sus obras nacen en la quietud, en esa zona donde el alma escucha y la mano obedece.</p>
+    <p>Su sello inconfundible: una figura diminuta en rojo, sola pero no perdida, pequeña ante lo inmenso pero de pie. Es el ser humano ante Dios.</p>
+    <p>Cada pieza es original, irrepetible. Una oración visual que ministra antes de que leas una sola palabra.</p>
+    <div>
+      <span class="technique-tag">Tinta China</span>
+      <span class="technique-tag">Sobre Papel</span>
+      <span class="technique-tag">Arte Original</span>
+      <span class="technique-tag">Prints Digitales</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="footer-logo">Perseverare <span>+</span> Fe</div>
+  <p class="footer-tagline">Arte · Devoción · Fe <span class="footer-cross">✝</span> Guatemala</p>
+
+  <div class="footer-links">
+    <a href="#galeria">Galería</a>
+    <a href="#productos">Tienda</a>
+    <a href="#devocional">Devocional</a>
+    <a href="#artista">La Artista</a>
+    <a href="https://www.facebook.com/perseverarearteandfe">Facebook</a>
+    <a href="https://www.instagram.com/perseverarearteandfe">Instagram</a>
+  </div>
+
+  <div class="footer-contact">
+    <p>¿Tienes una pregunta? ¿Quieres hacer un pedido?<br>Escríbenos directamente por WhatsApp.</p>
+    <a href="https://wa.me/50200000000?text=Hola%20Perseverare,%20me%20interesa%20conocer%20más" class="whatsapp-footer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Perseverare Arte + Fe · Guatemala City · Todos los derechos reservados</p>
+  </div>
+</footer>
+
+</body>
+</html>
